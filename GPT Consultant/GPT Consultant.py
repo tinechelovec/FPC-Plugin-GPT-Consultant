@@ -18,15 +18,14 @@ def log(msg):
     logger.info(f"{PREFIX} {msg}")
 
 NAME = "GPT Info"
-VERSION = "1.0"
+VERSION = "1.1"
 DESCRIPTION = "GPT-консультант по товара."
 UUID = "6b2c95ba-95e6-46e0-ae1c-84083993715c"
 SETTINGS_PAGE = False
 CREDITS = "@tinechelovec"
 
-log("Запустил плагин GPT-консультанта (v1.0)")
+log("Запустил плагин GPT-консультанта (v1.1)")
 
-# Папка и файл с настройками
 PLUGIN_FOLDER = "storage/plugins/gpt_info"
 DATA_FILE = os.path.join(PLUGIN_FOLDER, "data.json")
 os.makedirs(PLUGIN_FOLDER, exist_ok=True)
@@ -62,14 +61,7 @@ try:
 except Exception:
     pass
 
-
-# Основная логика генерации
-def generate_gpt_response(prompt: str, max_attempts: int = 5, min_delay: float = 0.5, max_delay: float = 1.5) -> str | None:
-    """
-    Попробовать сгенерировать ответ через g4f до max_attempts.
-    Если в ответе встретится "Login to continue using" — повторяем.
-    Возвращает текст ответа или None при неудаче.
-    """
+def generate_gpt_response(prompt: str, max_attempts: int = 10, min_delay: float = 0.5, max_delay: float = 1.5) -> str | None:
     for attempt in range(1, max_attempts + 1):
         try:
             log(f"g4f: попытка {attempt}/{max_attempts}")
@@ -96,8 +88,6 @@ def generate_gpt_response(prompt: str, max_attempts: int = 5, min_delay: float =
 
     return None
 
-
-# Обработчик нового сообщения от FunPay
 def gpt_info_handler(cardinal, e: NewMessageEvent):
     data = load_data()
     enabled = data.get("enabled", True)
@@ -187,8 +177,6 @@ def gpt_info_handler(cardinal, e: NewMessageEvent):
     cardinal.send_message(message.chat_id, response)
     log("Отправил ответ покупателю")
 
-
-# Telegram: управление плагином
 user_states = {}
 
 def set_command_start(message: Message, cardinal):
@@ -241,7 +229,6 @@ def handle_fsm_step(message: Message, cardinal):
         user_states.pop(chat_id)
         return
 
-# Инициализация
 def init_cardinal(cardinal):
     tg = cardinal.telegram
     tg.msg_handler(lambda m: set_command_start(m, cardinal), commands=["setgptcmd"])
