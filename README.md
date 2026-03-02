@@ -18,7 +18,9 @@
 4. Вернуться во вкладку "Плагины", нажать на "GPT Consultant" и дальше уже настраивать
 
 Более подробная [Инструкция](https://teletype.in/@tinechelovec/GPT-Consultant)
- 
-По всем багам, вопросам и предложениям пишите в [Issues](https://github.com/tinechelovec/FPC-Plugin-GPT-Consultant/issues) или в [Telegram](https://t.me/tinechelovec)
 
-Другие боты и плагины [Channel](https://t.me/by_thc)
+Ссылки если нужна помощь и тд:  
+[Telegram Chat](https://t.me/dev_thc_chat)  
+[Telegram Channel](https://t.me/by_thc)  
+[Telegram](https://t.me/tinechelovec) (100 звезд за сообщение или срочно важный вопрос напишите в чате и я уберу плату за сообщение)  
+[Issues](https://github.com/tinechelovec/FPC-Plugin-GPT-Consultant/issues)  
